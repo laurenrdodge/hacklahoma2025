@@ -19,14 +19,16 @@ const JobCard: FC<JobCardProps> = ({ job }) => {
   return (
     <div className="relative flex justify-between items-center rounded-xl">
       <div className="flex items-center">
-        <div className="h-16 w-16 bg-red-500 rounded-full"></div>
+        <div className="h-16 w-16 bg-indigo-500 rounded-full"></div>
         <div className="ml-4">
           <h2 className="font-medium text-sm text-gray-700">{job.company}</h2>
-          <h3 className="font-semibold text-lg text-gray-950">{job.title}</h3>
+          <h3 className="font-semibold text-lg tracking-tight text-gray-950">
+            {job.title}
+          </h3>
           <div className="flex space-x-2 text-gray-400">
             <p>{job.type}</p>
             <span className="text-gray-500">&bull;</span>
-            <p>{job.salaryRange}</p>
+            <p className="">{job.salaryRange}</p>
           </div>
         </div>
       </div>
