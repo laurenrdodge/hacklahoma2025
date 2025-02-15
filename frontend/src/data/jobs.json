@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "title": "Frontend Developer",
+    "company": "Google",
+    "location": "Mountain View, CA",
+    "type": "Full Time",
+    "salaryRange": "$100,000 - $150,000",
+    "description": "We are looking for a frontend developer to join our team."
+  },
+  {
+    "id": 2,
+    "title": "Frontend Developer",
+    "company": "Apple ",
+    "location": "Mountain View, CA",
+    "type": "Full Time",
+    "salaryRange": "$100,000 - $150,000",
+    "description": "We are looking for a frontend developer to join our team."
+  },
+  {
+    "id": 3,
+    "title": "Frontend Developer",
+    "company": "Microsoft ",
+    "location": "Mountain View, CA",
+    "type": "Full Time",
+    "salaryRange": "$100,000 - $150,000",
+    "description": "We are looking for a frontend developer to join our team."
+  },
+  {
+    "id": 4,
+    "title": "Frontend Developer",
+    "company": "Meta ",
+    "location": "Mountain View, CA",
+    "type": "Full Time",
+    "salaryRange": "$100,000 - $150,000",
+    "description": "We are looking for a frontend developer to join our team."
+  }
+]
