@@ -11,18 +11,18 @@ describe("JobBoard Contract", function () {
     // Retrieve signers
     [owner, employer, applicant] = await ethers.getSigners();
 
-    // Deploy a mock ERC20 token for staking (using OpenZeppelin's ERC20Mock or a similar token)
+    // Deploy a mock ERC20 token for staking using our ERC20Mock contract
     const Token = await ethers.getContractFactory("ERC20Mock");
     stakingToken = await Token.deploy("StakeToken", "STK", employer.address, initialStake);
-    await stakingToken.deployed();
+    await stakingToken.waitForDeployment(); // Updated for ethers v6
 
     // Deploy the JobBoard contract with the stakingToken address
     const JobBoard = await ethers.getContractFactory("JobBoard");
-    jobBoard = await JobBoard.deploy(stakingToken.address);
-    await jobBoard.deployed();
+    jobBoard = await JobBoard.deploy(stakingToken.target);
+    await jobBoard.waitForDeployment(); // Updated for ethers v6
 
     // Approve the JobBoard contract to spend tokens on behalf of the employer
-    await stakingToken.connect(employer).approve(jobBoard.address, initialStake);
+    await stakingToken.connect(employer).approve(jobBoard.target, initialStake);
   });
 
   describe("Posting a Job", function () {
