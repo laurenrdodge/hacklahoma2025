@@ -24,6 +24,7 @@
     "hardhat": "^2.22.18"
   },
   "dependencies": {
+    "ethers": "^6.13.5",
     "hacklahoma2025": "file:"
   }
 }
