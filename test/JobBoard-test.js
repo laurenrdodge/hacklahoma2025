@@ -4,7 +4,8 @@ const { ethers } = require("hardhat");
 describe("JobBoard Contract", function () {
   let jobBoard, stakingToken;
   let owner, employer, applicant;
-  const initialStake = ethers.utils.parseEther("1000");
+  // Use ethers.parseEther for ethers v6
+  const initialStake = ethers.parseEther("1000");
 
   beforeEach(async function () {
     // Retrieve signers
@@ -26,7 +27,7 @@ describe("JobBoard Contract", function () {
 
   describe("Posting a Job", function () {
     it("should allow posting a valid job", async function () {
-      const stakeAmount = ethers.utils.parseEther("10");
+      const stakeAmount = ethers.parseEther("10");
 
       // Post a job with a safe AI rating (e.g., 1)
       await expect(
@@ -44,7 +45,7 @@ describe("JobBoard Contract", function () {
     });
 
     it("should flag a job if AI rating is 2 or 3", async function () {
-      const stakeAmount = ethers.utils.parseEther("10");
+      const stakeAmount = ethers.parseEther("10");
 
       // Post a job with AI rating 2, which should be flagged as misleading
       await expect(
@@ -57,7 +58,7 @@ describe("JobBoard Contract", function () {
     });
 
     it("should revert posting if AI rating is 4 or 5", async function () {
-      const stakeAmount = ethers.utils.parseEther("10");
+      const stakeAmount = ethers.parseEther("10");
 
       // Attempt to post a job with a high AI rating (e.g., 4) should be blocked
       await expect(
@@ -69,7 +70,7 @@ describe("JobBoard Contract", function () {
   describe("Confirming an Interview", function () {
     beforeEach(async function () {
       // Post a valid job first
-      const stakeAmount = ethers.utils.parseEther("10");
+      const stakeAmount = ethers.parseEther("10");
       await jobBoard.connect(employer).postJob("Designer", "Design stuff", 1, stakeAmount);
     });
 
@@ -95,7 +96,7 @@ describe("JobBoard Contract", function () {
   describe("Reporting a Fake Job", function () {
     beforeEach(async function () {
       // Post a valid job first
-      const stakeAmount = ethers.utils.parseEther("10");
+      const stakeAmount = ethers.parseEther("10");
       await jobBoard.connect(employer).postJob("QA Engineer", "Test software", 1, stakeAmount);
     });
 
