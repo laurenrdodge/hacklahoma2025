@@ -16,6 +16,7 @@
     "deepinfra": "^2.0.2",
     "dotenv": "^16.4.7",
     "frontend": "file:",
+    "fs": "^0.0.1-security",
     "lucide-react": "^0.475.0",
     "next": "15.1.7",
     "react": "^19.0.0",
