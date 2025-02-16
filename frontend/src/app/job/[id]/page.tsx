@@ -23,12 +23,12 @@ export default function JobDetailPage() {
     <main className="max-w-6xl mx-auto px-8 pb-8 font-sans">
       <header>
         <div className="flex justify-between items-center py-6">
-          <span>
-            <span className="font-semibold text-xl text-gray-950">ether</span>
-            <span className="font-black uppercase text-lg text-indigo-500">
+          <Link href={`/`}>
+            <span className="font-semibold text-3xl text-gray-950">ether</span>
+            <span className="font-black uppercase text-2xl text-indigo-500">
               jobs
             </span>
-          </span>
+          </Link>
           <button
             className="px-3 py-2 text-sm font-medium text-white rounded-lg bg-gray-800 hover:bg-gray-700"
             onClick={() => setIsJobModalOpen(true)}

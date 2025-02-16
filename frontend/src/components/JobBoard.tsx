@@ -14,7 +14,7 @@ export default function JobBoard() {
         (job.title.toLowerCase().includes(search.toLowerCase()) ||
           job.company.toLowerCase().includes(search.toLowerCase())) &&
         parseInt(
-          job.salaryRange.split("-")[0].replace("$", "").replace(",", "")
+          job.salaryRange.split("-")[1].replace("$", "").replace(",", "")
         ) >=
           minSalary * 1000
     )
@@ -80,7 +80,7 @@ export default function JobBoard() {
       <ul className="divide-y divide-gray-200 mb-8" id="jobs">
         {filteredJobs.length > 0 ? (
           filteredJobs.map((job) => (
-            <li key={job.id} className="group relative py-6 sm:rounded-2xl">
+            <li key={job.id} className="group relative py-6">
               <div className="absolute -inset-x-4 -inset-y-px bg-gray-50 opacity-0 group-hover:opacity-100 sm:-inset-x-5 sm:rounded-2xl lg:-inset-x-8"></div>
               <JobCard job={job} />
             </li>
