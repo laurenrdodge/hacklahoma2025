@@ -27,7 +27,7 @@ export default function JobBoard() {
   return (
     <div>
       <div className="border-b border-gray-200 mt-4">
-        <div className="flex flex-col mb-3 md:flex-row gap-4 text-gray-400">
+        <div className="flex flex-col mb-3 md:flex-row gap-4 text-gray-500">
           {/* Search Bar */}
           <div className="w-full md:w-2/3 flex items-center">
             <svg

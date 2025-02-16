@@ -1,4 +1,4 @@
-import Link from "next/link";
+// import a from "next/a";
 import { FC } from "react";
 import Image from "next/image";
 
@@ -34,7 +34,7 @@ const getTimeAgo = (dateString: string): string => {
   const secondsInMonth = secondsInDay * 30;
   const secondsInYear = secondsInDay * 365;
 
-  if (diffInSeconds < secondsInDay) return "today";
+  if (diffInSeconds < secondsInDay) return "Today";
   if (diffInSeconds < secondsInWeek)
     return `${Math.floor(diffInSeconds / secondsInDay)}d ago`;
   if (diffInSeconds < secondsInMonth)
@@ -48,7 +48,7 @@ const JobCard: FC<JobCardProps> = ({ job }) => {
   const hasImage = job.image && job.image.trim() !== "";
 
   return (
-    <Link
+    <a
       href={`/job/${job.id}`}
       className="relative flex justify-between items-center rounded-xl cursor-pointer"
     >
@@ -82,7 +82,7 @@ const JobCard: FC<JobCardProps> = ({ job }) => {
           {job.postedDate ? getTimeAgo(job.postedDate) : "N/A"}
         </p>
       </div>
-    </Link>
+    </a>
   );
 };
 

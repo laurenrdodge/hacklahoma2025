@@ -20,15 +20,15 @@ export default function JobDetailPage() {
   }
 
   return (
-    <main className="max-w-6xl mx-auto px-8 pb-8 font-sans">
+    <main className="max-w-6xl mx-auto px-8 pb-16 font-sans">
       <header>
         <div className="flex justify-between items-center py-6">
-          <Link href={`/`}>
+          <a href={`/`}>
             <span className="font-semibold text-3xl text-gray-950">ether</span>
             <span className="font-black uppercase text-2xl text-indigo-500">
               jobs
             </span>
-          </Link>
+          </a>
           <button
             className="px-3 py-2 text-sm font-medium text-white rounded-lg bg-gray-800 hover:bg-gray-700"
             onClick={() => setIsJobModalOpen(true)}
@@ -39,7 +39,10 @@ export default function JobDetailPage() {
       </header>
       <div className="relative grid grid-cols-[30rem_minmax(0,1fr)] items-start max-h-content">
         <div className="sticky top-8 border border-gray-200 border-r-0 px-8 pt-8 pb-10 rounded-l-xl">
-          <Link href={`/`} className="flex items-center mb-6 text-gray-400">
+          <a
+            href={`/`}
+            className="inline-flex group items-center mb-6 text-gray-400 hover:bg-gray-100 hover:text-gray-500 py-1 pl-1 pr-2 rounded-lg -ml-1"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 16 16"
@@ -53,8 +56,10 @@ export default function JobDetailPage() {
               />
             </svg>
 
-            <span className="text-gray-500 text-sm inline-block">Back</span>
-          </Link>
+            <span className="text-gray-500 group-hover:text-gray-600 text-sm inline-block">
+              Back
+            </span>
+          </a>
           <div className="flex items-center space-x-2 mb-6">
             <Image
               src={job.image as string}
