@@ -29,7 +29,7 @@ export default function JobDetailPage() {
         </div>
       </header>
       <div className="relative grid grid-cols-[30rem_minmax(0,1fr)] items-start max-h-content">
-        <div className="sticky top-0 border border-gray-200 border-r-0 px-8 pt-8 pb-12">
+        <div className="sticky top-0 border border-gray-200 border-r-0 px-8 pt-8 pb-12 rounded-l-xl">
           <Link href={`/`} className="flex items-center mb-4 text-gray-400">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -96,7 +96,7 @@ export default function JobDetailPage() {
             Apply Now
           </a>
         </div>
-        <div className="px-8 py-8 border border-gray-200">
+        <div className="px-8 py-8 border border-gray-200 rounded-b-xl rounded-tr-xl">
           <div className="prose max-w-none">
             <ReactMarkdown>{job.description}</ReactMarkdown>
           </div>
