@@ -1,8 +1,18 @@
 "use client";
 
 import { useState } from "react";
+
+declare global {
+  interface Window {
+    ethereum: any;
+  }
+}
 import jobs from "@/data/jobs.json";
 import JobCard from "@/components/JobCard";
+import { ethers } from "ethers";
+import { Web3Provider } from "@ethersproject/providers";
+import { parseEther } from "@ethersproject/units";
+import { abi as jobBoardABI } from "@/src/artifacts/contracts/JobBoard.sol/JobBoard.json";
 
 interface JobPostModalProps {
   isOpen: boolean;
@@ -16,6 +26,7 @@ export default function JobPostModal({ isOpen, onClose }: JobPostModalProps) {
   const [salaryRange, setSalaryRange] = useState("");
   const [jobType, setJobType] = useState("Full-time");
   const [description, setDescription] = useState("");
+  const [stakeAmount, setStakeAmount] = useState("");
   const [aiAnalysis, setAiAnalysis] = useState<{
     rating: number;
     feedback: string;
@@ -59,12 +70,37 @@ export default function JobPostModal({ isOpen, onClose }: JobPostModalProps) {
         return;
       }
 
-      // Here you would typically send the job post to your backend
-      alert("Job posting submitted successfully!");
+      if (!window.ethereum) {
+        alert("Please install MetaMask or connect to Ethereum network.");
+        return;
+      }
+      const provider = new Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+  
+      const jobBoardAddress = process.env.NEXT_PUBLIC_JOB_BOARD_ADDRESS;
+      if (!jobBoardAddress) {
+        throw new Error("Job board address is not defined");
+      }
+      const jobBoardContract = new ethers.Contract(jobBoardAddress, jobBoardABI, signer as unknown as ethers.ContractRunner);
+  
+      // Convert stake amount to wei
+      const parsedStakeAmount = parseEther(stakeAmount);
+  
+      // Post the job
+      const tx = await jobBoardContract.postJob(
+        jobTitle,
+        description, // Assuming description combines all fields
+        aiAnalysis.rating, // AI rating from analysis
+        parsedStakeAmount
+      );
+  
+      await tx.wait();
+  
+      alert("Job posted successfully!");
       onClose();
     } catch (error) {
       console.error("Error:", error);
-      alert("Error analyzing job posting. Please try again.");
+      alert("Error posting job. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -155,6 +191,19 @@ export default function JobPostModal({ isOpen, onClose }: JobPostModalProps) {
               onChange={(e) => setDescription(e.target.value)}
               rows={4}
               required
+            />
+
+            <label className="block text-sm font-medium text-gray-700">
+              Stake Amount (ETH)
+            </label>
+            <input
+              type="number"
+              className="w-full p-2 border rounded-md mb-3"
+              value={stakeAmount}
+              onChange={(e) => setStakeAmount(e.target.value)}
+              required
+              min="0.1"
+              step="0.1"
             />
 
             <label className="block text-sm font-medium text-gray-700">
