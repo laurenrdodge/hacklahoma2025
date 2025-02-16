@@ -28,7 +28,7 @@ export default function JobDetailPage() {
             </span>
           </span>
           <button
-            className="px-3 py-2 text-xs font-medium text-white rounded-lg bg-gray-800 hover:bg-gray-700"
+            className="px-3 py-2 text-sm font-medium text-white rounded-lg bg-gray-800 hover:bg-gray-700"
             onClick={() => setIsJobModalOpen(true)}
           >
             Post a job
@@ -36,7 +36,7 @@ export default function JobDetailPage() {
         </div>
       </header>
       <div className="relative grid grid-cols-[30rem_minmax(0,1fr)] items-start max-h-content">
-        <div className="sticky top-8 border border-gray-200 border-r-0 px-8 pt-8 pb-13 rounded-l-xl">
+        <div className="sticky top-8 border border-gray-200 border-r-0 px-8 pt-8 pb-10 rounded-l-xl">
           <Link href={`/`} className="flex items-center mb-6 text-gray-400">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -111,6 +111,11 @@ export default function JobDetailPage() {
           >
             Apply Now
           </a>
+          {job.employerResponseTime ? (
+            <p className="text-gray-500 text-center mt-6">
+              Usually responds within {job.employerResponseTime}.
+            </p>
+          ) : null}
         </div>
         <div className="px-8 py-8 border border-gray-200 rounded-b-xl rounded-tr-xl">
           <div className="prose max-w-none">

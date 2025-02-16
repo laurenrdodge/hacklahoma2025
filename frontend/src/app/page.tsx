@@ -18,14 +18,14 @@ export default function Home() {
             </span>
           </span>
           <button
-            className="px-3 py-2 text-xs font-medium text-white rounded-lg bg-gray-800 hover:bg-gray-700"
+            className="px-3 py-2 text-sm font-medium text-white rounded-lg bg-gray-800 hover:bg-gray-700"
             onClick={() => setIsModalOpen(true)}
           >
             Post a job
           </button>
         </div>
         <div className="pt-8 pb-12">
-          <h1 className="text-4xl text-center font-bold tracking-tighter">
+          <h1 className="text-5xl text-center font-bold tracking-tighter">
             Decentralized hiring, verified <br />
             opportunities. Get hired faster than ever.
           </h1>

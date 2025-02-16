@@ -29,6 +29,7 @@ export default function JobPostModal({ isOpen, onClose }: JobPostModalProps) {
     salaryRange: salaryRange || "Salary Range",
     description,
     postedDate: new Date().toISOString().split("T")[0], // Today's date
+    employerResponseTime: null, // or provide a default value
   };
 
   // Combine jobs with live preview (sorted by dateAdded, newest first)

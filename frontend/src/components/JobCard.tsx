@@ -12,6 +12,7 @@ type Job = {
   description: string;
   image?: string;
   postedDate: string | null;
+  employerResponseTime: string | null;
 };
 
 interface JobCardProps {
