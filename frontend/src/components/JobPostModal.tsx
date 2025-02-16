@@ -16,7 +16,10 @@ export default function JobPostModal({ isOpen, onClose }: JobPostModalProps) {
   const [salaryRange, setSalaryRange] = useState("");
   const [jobType, setJobType] = useState("Full-time");
   const [description, setDescription] = useState("");
-  const [aiAnalysis, setAiAnalysis] = useState<{ rating: number; feedback: string }>({ rating: 0, feedback: "" });
+  const [aiAnalysis, setAiAnalysis] = useState<{
+    rating: number;
+    feedback: string;
+  }>({ rating: 0, feedback: "" });
   const [loading, setLoading] = useState(false);
 
   if (!isOpen) return null;
@@ -34,17 +37,17 @@ export default function JobPostModal({ isOpen, onClose }: JobPostModalProps) {
       `;
 
       // Call the server-side API route
-      const response = await fetch('/api/analyze', {
-        method: 'POST',
+      const response = await fetch("/api/analyze", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ jobPosting }),
       });
 
       const data = await response.json();
       if (!data.success) {
-        alert(data.error || 'Error analyzing job posting asf.');
+        alert(data.error || "Error analyzing job posting asf.");
         return;
       }
 
@@ -60,7 +63,7 @@ export default function JobPostModal({ isOpen, onClose }: JobPostModalProps) {
       alert("Job posting submitted successfully!");
       onClose();
     } catch (error) {
-      console.error('Error:', error);
+      console.error("Error:", error);
       alert("Error analyzing job posting. Please try again.");
     } finally {
       setLoading(false);
@@ -90,7 +93,7 @@ export default function JobPostModal({ isOpen, onClose }: JobPostModalProps) {
       {/* Modal container */}
       <div className="bg-white rounded-lg shadow-lg w-full max-w-7xl flex overflow-hidden items-center">
         {/* Left: Job Input Form */}
-        <div className="w-2/5 p-8">
+        <div className="w-2/5 p-8 h-[85vh] overflow-y-auto">
           <h2 className="text-3xl font-bold mb-14 tracking-tight">
             Post a Job
           </h2>
@@ -169,8 +172,14 @@ export default function JobPostModal({ isOpen, onClose }: JobPostModalProps) {
 
             {/* AI Analysis Display */}
             <div className="mt-6">
-              <h3 className="text-sm font-medium text-gray-700 mb-2">AI Analysis</h3>
-              <div className={`p-3 rounded-md ${aiAnalysis.rating >= 3 ? "bg-red-50" : "bg-green-50"}`}>
+              <h3 className="text-sm font-medium text-gray-700 mb-2">
+                AI Analysis
+              </h3>
+              <div
+                className={`p-3 rounded-md ${
+                  aiAnalysis.rating >= 3 ? "bg-red-50" : "bg-green-50"
+                }`}
+              >
                 <p className="text-sm">
                   Rating: {aiAnalysis.rating} / 5<br />
                   Feedback: {aiAnalysis.feedback}
@@ -197,36 +206,8 @@ export default function JobPostModal({ isOpen, onClose }: JobPostModalProps) {
           </form>
         </div>
 
-        {/* Right: Live Preview */}
-        <div className="w-3/5 bg-gray-50 p-6 flex flex-col justify-center">
-          <div className="border p-4 rounded-lg bg-white">
-            <div className="relative flex justify-between items-center rounded-xl">
-              <div className="flex items-center">
-                <div className="h-16 w-16 bg-indigo-500 rounded-full"></div>
-                <div className="ml-4">
-                  <h2 className="font-medium text-sm text-gray-700">
-                    {companyName || "Company Name"}
-                  </h2>
-                  <h3 className="font-semibold text-lg tracking-tight text-gray-950">
-                    {jobTitle || "Job Title"}
-                  </h3>
-                  <div className="flex space-x-2 text-gray-400">
-                    <p>{jobType} </p>
-                    <span className="text-gray-500">&bull;</span>
-                    <p className="">{salaryRange || "Salary Range"}</p>
-                  </div>
-                </div>
-              </div>
-              <div className="flex space-x-6">
-                <p className="text-gray-600">{location || "Location"}</p>
-                <p className="text-gray-400">2d ago</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
         {/* Right: Job Listings with Live Preview */}
-        <div className="w-3/5 bg-gray-50 p-6 overflow-y-auto h-[80vh]">
+        <div className="w-3/5 bg-gray-50 p-6 overflow-y-auto h-[85vh]">
           <ul className="divide-y divide-gray-200">
             {sortedJobs.map((job, index) => (
               <li
