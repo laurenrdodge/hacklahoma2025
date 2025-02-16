@@ -3,7 +3,7 @@ import jobs from "@/data/jobs.json";
 
 export default function Home() {
   return (
-    <main className="container mx-auto px-4 font-sans">
+    <main className="max-w-4xl mx-auto px-4 font-sans">
       <header>
         <div className="flex justify-between items-center py-6">
           <span>

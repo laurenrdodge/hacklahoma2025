@@ -17,7 +17,10 @@ interface JobCardProps {
 
 const JobCard: FC<JobCardProps> = ({ job }) => {
   return (
-    <div className="relative flex justify-between items-center rounded-xl">
+    <Link
+      href={`/job/${job.id}`}
+      className="relative flex justify-between items-center rounded-xl"
+    >
       <div className="flex items-center">
         <div className="h-16 w-16 bg-indigo-500 rounded-full"></div>
         <div className="ml-4">
@@ -36,7 +39,7 @@ const JobCard: FC<JobCardProps> = ({ job }) => {
         <p className="text-gray-600">{job.location}</p>
         <p className="text-gray-400">2d ago</p>
       </div>
-    </div>
+    </Link>
   );
 };
 
