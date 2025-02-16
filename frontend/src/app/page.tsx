@@ -1,4 +1,4 @@
-import JobCard from "@/components/JobCard";
+import JobBoard from "@/components/JobBoard";
 import jobs from "@/data/jobs.json";
 
 export default function Home() {
@@ -24,26 +24,22 @@ export default function Home() {
           <p className="mt-6 text-center text-lg text-gray-500 max-w-[48rem] mx-auto">
             A job board where companies stake their reputation &ndash;
             literally. No fake listings. No misleading posts. Just real jobs
-            from verified employers
+            from verified employers.
           </p>
           <div className="mx-auto space-x-4 text-center mt-8">
-            <button className="px-4 py-2 text-sm font-semibold text-white rounded-lg bg-gray-800 border border-gray-800 hover:bg-gray-700">
+            <a
+              href="#jobs"
+              className="px-4 py-2 text-sm font-semibold text-white rounded-lg bg-gray-800 border border-gray-800 hover:bg-gray-700"
+            >
               View jobs
-            </button>
-            <button className="px-4 py-2 text-sm font-semibold text-gray-800 rounded-lg border border-gray-200 hover:bg-gray-200">
+            </a>
+            <a className="px-4 py-2 text-sm font-semibold text-gray-800 rounded-lg border border-gray-200 hover:bg-gray-200">
               Learn more
-            </button>
+            </a>
           </div>
         </div>
       </header>
-      <ul className="mt-4 divide-y divide-gray-200">
-        {jobs.map((job) => (
-          <li key={job.id} className="group relative py-6 sm:rounded-2xl">
-            <div className="absolute -inset-x-4 -inset-y-px bg-gray-50 opacity-0 group-hover:opacity-100 sm:-inset-x-5 sm:rounded-2xl lg:-inset-x-8"></div>
-            <JobCard job={job} />
-          </li>
-        ))}
-      </ul>
+      <JobBoard />
     </main>
   );
 }
