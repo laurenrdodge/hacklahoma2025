@@ -11,11 +11,37 @@ type Job = {
   salaryRange: string;
   description: string;
   image?: string;
+  postedDate: string | null;
 };
 
 interface JobCardProps {
   job: Job;
 }
+
+// Function to calculate "time ago"
+const getTimeAgo = (dateString: string): string => {
+  const now = new Date();
+  const postedDate = new Date(dateString);
+  const diffInSeconds = Math.floor(
+    (now.getTime() - postedDate.getTime()) / 1000
+  );
+
+  const secondsInMinute = 60;
+  const secondsInHour = secondsInMinute * 60;
+  const secondsInDay = secondsInHour * 24;
+  const secondsInWeek = secondsInDay * 7;
+  const secondsInMonth = secondsInDay * 30;
+  const secondsInYear = secondsInDay * 365;
+
+  if (diffInSeconds < secondsInDay) return "today";
+  if (diffInSeconds < secondsInWeek)
+    return `${Math.floor(diffInSeconds / secondsInDay)}d ago`;
+  if (diffInSeconds < secondsInMonth)
+    return `${Math.floor(diffInSeconds / secondsInWeek)}w ago`;
+  if (diffInSeconds < secondsInYear)
+    return `${Math.floor(diffInSeconds / secondsInMonth)}mo ago`;
+  return `${Math.floor(diffInSeconds / secondsInYear)}y ago`;
+};
 
 const JobCard: FC<JobCardProps> = ({ job }) => {
   const hasImage = job.image && job.image.trim() !== "";
@@ -49,9 +75,11 @@ const JobCard: FC<JobCardProps> = ({ job }) => {
           </div>
         </div>
       </div>
-      <div className="flex space-x-6">
+      <div className="flex items-center space-x-6">
         <p className="text-gray-600">{job.location}</p>
-        <p className="text-gray-400">2d ago</p>
+        <p className="text-gray-400 w-18 text-right">
+          {job.postedDate ? getTimeAgo(job.postedDate) : "N/A"}
+        </p>
       </div>
     </Link>
   );

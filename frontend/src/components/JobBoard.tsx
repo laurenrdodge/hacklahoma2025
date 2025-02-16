@@ -8,15 +8,21 @@ export default function JobBoard() {
   const [search, setSearch] = useState("");
   const [minSalary, setMinSalary] = useState(0);
 
-  const filteredJobs = jobs.filter(
-    (job) =>
-      (job.title.toLowerCase().includes(search.toLowerCase()) ||
-        job.company.toLowerCase().includes(search.toLowerCase())) &&
-      parseInt(
-        job.salaryRange.split("-")[0].replace("$", "").replace(",", "")
-      ) >=
-        minSalary * 1000
-  );
+  const filteredJobs = jobs
+    .filter(
+      (job) =>
+        (job.title.toLowerCase().includes(search.toLowerCase()) ||
+          job.company.toLowerCase().includes(search.toLowerCase())) &&
+        parseInt(
+          job.salaryRange.split("-")[0].replace("$", "").replace(",", "")
+        ) >=
+          minSalary * 1000
+    )
+    .sort(
+      (a, b) =>
+        new Date(b.postedDate ?? "").getTime() -
+        new Date(a.postedDate ?? "").getTime()
+    );
 
   return (
     <div>
