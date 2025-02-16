@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import jobs from "@/data/jobs.json";
+import JobCard from "@/components/JobCard";
 
 interface JobPostModalProps {
   isOpen: boolean;
@@ -17,13 +19,33 @@ export default function JobPostModal({ isOpen, onClose }: JobPostModalProps) {
 
   if (!isOpen) return null;
 
+  // Mock new job to be inserted dynamically
+  const newJob = {
+    id: jobs.length + 1,
+    title: jobTitle || "Job Title",
+    company: companyName || "Company Name",
+    location: location || "Location",
+    type: jobType,
+    salaryRange: salaryRange || "Salary Range",
+    description,
+    postedDate: new Date().toISOString().split("T")[0], // Today's date
+  };
+
+  // Combine jobs with live preview (sorted by dateAdded, newest first)
+  const sortedJobs = [newJob, ...jobs].sort(
+    (a, b) =>
+      new Date(b.postedDate).getTime() - new Date(a.postedDate).getTime()
+  );
+
   return (
     <div className="fixed inset-0 bg-black/80 flex justify-center items-center z-50">
       {/* Modal container */}
-      <div className="bg-white rounded-lg shadow-lg w-full max-w-5xl flex overflow-hidden">
+      <div className="bg-white rounded-lg shadow-lg w-full max-w-7xl flex overflow-hidden items-center">
         {/* Left: Job Input Form */}
-        <div className="w-2/5 p-6">
-          <h2 className="text-2xl font-bold mb-4 tracking-tight">Post a Job</h2>
+        <div className="w-2/5 p-8">
+          <h2 className="text-3xl font-bold mb-14 tracking-tight">
+            Post a Job
+          </h2>
 
           <label className="block text-sm font-medium text-gray-700">
             Job Title
@@ -102,33 +124,22 @@ export default function JobPostModal({ isOpen, onClose }: JobPostModalProps) {
           </button>
         </div>
 
-        {/* Right: Live Preview */}
-        <div className="w-3/5 bg-gray-50 p-6 flex flex-col justify-center">
-          {/* <h3 className="text-gray-500 mb-2">Preview</h3> */}
-          <div className="border p-4 rounded-lg bg-white">
-            <div className="relative flex justify-between items-center rounded-xl">
-              <div className="flex items-center">
-                <div className="h-16 w-16 bg-indigo-500 rounded-full"></div>
-                <div className="ml-4">
-                  <h2 className="font-medium text-sm text-gray-700">
-                    {companyName || "Company Name"}
-                  </h2>
-                  <h3 className="font-semibold text-lg tracking-tight text-gray-950">
-                    {jobTitle || "Job Title"}
-                  </h3>
-                  <div className="flex space-x-2 text-gray-400">
-                    <p>{jobType} </p>
-                    <span className="text-gray-500">&bull;</span>
-                    <p className="">{salaryRange || "Salary Range"}</p>
-                  </div>
-                </div>
-              </div>
-              <div className="flex space-x-6">
-                <p className="text-gray-600">{location || "Location"}</p>
-                <p className="text-gray-400">2d ago</p>
-              </div>
-            </div>
-          </div>
+        {/* Right: Job Listings with Live Preview */}
+        <div className="w-3/5 bg-gray-50 p-6 overflow-y-auto h-[80vh]">
+          <ul className="divide-y divide-gray-200">
+            {sortedJobs.map((job, index) => (
+              <li
+                key={job.id}
+                className={`py-4 ${
+                  index === 1
+                    ? "bg-white border border-gray-200 shadow-lg p-4 rounded-xl"
+                    : "opacity-50 px-4"
+                }`}
+              >
+                <JobCard job={job} />
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </div>
