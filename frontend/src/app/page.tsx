@@ -1,7 +1,13 @@
+"use client";
+
+import { useState } from "react";
 import JobBoard from "@/components/JobBoard";
+import JobPostModal from "@/components/JobPostModal";
 import jobs from "@/data/jobs.json";
 
 export default function Home() {
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+
   return (
     <main className="max-w-4xl mx-auto px-4 font-sans">
       <header>
@@ -12,7 +18,10 @@ export default function Home() {
               jobs
             </span>
           </span>
-          <button className="px-3 py-2 text-xs font-medium text-white rounded-lg bg-gray-800 hover:bg-gray-700">
+          <button
+            className="px-3 py-2 text-xs font-medium text-white rounded-lg bg-gray-800 hover:bg-gray-700"
+            onClick={() => setIsModalOpen(true)}
+          >
             Post a job
           </button>
         </div>
@@ -40,6 +49,10 @@ export default function Home() {
         </div>
       </header>
       <JobBoard />
+      <JobPostModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
     </main>
   );
 }
