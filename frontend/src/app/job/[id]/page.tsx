@@ -4,6 +4,7 @@ import { useParams } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import jobs from "@/data/jobs.json";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function JobDetailPage() {
   const { id } = useParams() as { id: string };
@@ -29,8 +30,8 @@ export default function JobDetailPage() {
         </div>
       </header>
       <div className="relative grid grid-cols-[30rem_minmax(0,1fr)] items-start max-h-content">
-        <div className="sticky top-8 border border-gray-200 border-r-0 px-8 pt-8 pb-12 rounded-l-xl">
-          <Link href={`/`} className="flex items-center mb-4 text-gray-400">
+        <div className="sticky top-8 border border-gray-200 border-r-0 px-8 pt-8 pb-13 rounded-l-xl">
+          <Link href={`/`} className="flex items-center mb-6 text-gray-400">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 16 16"
@@ -46,9 +47,18 @@ export default function JobDetailPage() {
 
             <span className="text-gray-500 text-sm inline-block">Back</span>
           </Link>
-          <p className="font-semibold text-indigo-500 text-lg mb-2">
-            {job.company}
-          </p>
+          <div className="flex items-center space-x-2 mb-6">
+            <Image
+              src={job.image as string}
+              alt={job.company}
+              width={36}
+              height={36}
+              className="rounded-full border border-gray-200"
+            />
+            <p className="font-semibold text-indigo-500 text-lg">
+              {job.company}
+            </p>
+          </div>
           <h1 className="text-5xl font-bold mb-2 tracking-tighter">
             {job.title}
           </h1>
