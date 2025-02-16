@@ -104,8 +104,8 @@ Resume: ${resumeText}`);
             <Image
               src={job.image as string}
               alt={job.company}
-              width={36}
-              height={36}
+              width={48}
+              height={48}
               className="rounded-full border border-gray-200"
             />
             <p className="font-semibold text-gray-500 text-lg">{job.company}</p>
