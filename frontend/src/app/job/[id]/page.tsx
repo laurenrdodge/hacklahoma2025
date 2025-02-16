@@ -30,10 +30,10 @@ export default function JobDetailPage() {
             </span>
           </a>
           <button
-            className="px-3 py-2 text-sm font-medium text-white rounded-lg bg-gray-800 hover:bg-gray-700"
+            className="px-4 py-2 text-sm font-medium text-white rounded-lg bg-gray-800 hover:bg-gray-700 cursor-pointer"
             onClick={() => setIsJobModalOpen(true)}
           >
-            Post a job
+            Post a Job
           </button>
         </div>
       </header>
@@ -120,7 +120,7 @@ export default function JobDetailPage() {
           </a>
           {job.employerResponseTime ? (
             <p className="text-gray-500 text-center mt-6">
-              Usually responds within {job.employerResponseTime}.
+              Usually responds within {job.employerResponseTime}
             </p>
           ) : null}
         </div>

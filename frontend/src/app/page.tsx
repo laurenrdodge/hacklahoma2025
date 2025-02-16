@@ -20,10 +20,10 @@ export default function Home() {
             </span>
           </span>
           <button
-            className="px-3 py-2 text-sm font-medium text-white rounded-lg bg-gray-800 hover:bg-gray-700"
+            className="px-4 py-2 text-sm font-medium text-white rounded-lg bg-gray-800 hover:bg-gray-700 cursor-pointer"
             onClick={() => setIsModalOpen(true)}
           >
-            Post a job
+            Post a Job
           </button>
         </div>
         <div className="pt-8 pb-12">
@@ -41,10 +41,13 @@ export default function Home() {
               href="#jobs"
               className="px-4 py-2 text-sm font-semibold text-white rounded-lg bg-gray-800 border border-gray-800 hover:bg-gray-700"
             >
-              View jobs
+              View Jobs
             </a>
-            <a className="px-4 py-2 text-sm font-semibold text-gray-800 rounded-lg border border-gray-200 hover:bg-gray-200">
-              Learn more
+            <a
+              href={`https://devpost.com/software/etherjobs`}
+              className="px-4 py-2 text-sm font-semibold text-gray-800 rounded-lg border border-gray-200 hover:bg-gray-200"
+            >
+              Learn More
             </a>
           </div>
         </div>

@@ -81,6 +81,7 @@ export default function JobPostModal({ isOpen, onClose }: JobPostModalProps) {
     description,
     postedDate: new Date().toISOString().split("T")[0], // Today's date
     employerResponseTime: null, // or provide a default value
+    rating: aiAnalysis.rating,
   };
 
   // Combine jobs with live preview (sorted by dateAdded, newest first)
@@ -90,12 +91,18 @@ export default function JobPostModal({ isOpen, onClose }: JobPostModalProps) {
   );
 
   return (
-    <div className="fixed inset-0 bg-black/80 flex justify-center items-center z-50">
+    <div
+      className="fixed inset-0 bg-black/80 flex justify-center items-center z-50 overflow-hidden"
+      onClick={onClose}
+    >
       {/* Modal container */}
-      <div className="bg-white rounded-lg shadow-lg w-full max-w-7xl flex overflow-hidden items-center">
+      <div className="bg-white rounded-lg shadow-lg w-full max-w-7xl flex items-center z-40">
         {/* Left: Job Input Form */}
-        <div className="w-2/5 p-8 h-[85vh] overflow-y-auto">
-          <h2 className="text-3xl font-bold mb-14 tracking-tight">
+        <div
+          className="w-2/5 p-8 h-[85vh] overflow-y-auto"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <h2 className="text-3xl font-bold mt-4 mb-8 tracking-tight">
             Post a Job
           </h2>
 
@@ -208,23 +215,37 @@ export default function JobPostModal({ isOpen, onClose }: JobPostModalProps) {
         </div>
 
         {/* Right: Job Listings with Live Preview */}
-        <div className="w-3/5 bg-gray-50 p-6 overflow-y-auto h-[85vh]">
-          <ul className="divide-y divide-gray-200">
-            {sortedJobs.map((job, index) => (
-              <li
-                key={job.id}
-                className={`py-4 ${
-                  index === 1
-                    ? "bg-white border border-gray-200 shadow-lg p-4 rounded-xl"
-                    : "opacity-50 px-4"
-                }`}
-              >
-                <JobCard job={job} />
-              </li>
-            ))}
-          </ul>
+        <div
+          className="w-3/5 bg-gray-50 p-6 overflow-hidden rounded-r-lg h-[85vh]"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div className="modal-preview cursor-default pointer-events-none">
+            <ul className="">
+              {sortedJobs.map((job, index) => (
+                <li
+                  key={job.id}
+                  className={`py-4 ${
+                    index === 1
+                      ? "bg-white border border-gray-200 shadow-lg p-4 rounded-xl my-4"
+                      : "opacity-50 px-4"
+                  }`}
+                >
+                  <JobCard job={job} />
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
+      {/* Global style override to hide the color circle within the modal preview */}
+      <style jsx global>{`
+        .modal-preview .size-2 {
+          display: none !important;
+        }
+        .modal-preview img {
+          margin-left: 0 !important;
+        }
+      `}</style>
     </div>
   );
 }

@@ -13,6 +13,7 @@ type Job = {
   image?: string;
   postedDate: string | null;
   employerResponseTime: string | null;
+  rating: number;
 };
 
 interface JobCardProps {
@@ -53,19 +54,28 @@ const JobCard: FC<JobCardProps> = ({ job }) => {
       className="relative flex justify-between items-center rounded-xl cursor-pointer"
     >
       <div className="flex items-center">
+        {job.rating < 2 ? (
+          <div className="size-2 rounded-full bg-emerald-500"></div>
+        ) : job.rating < 4 ? (
+          <div className="size-2 rounded-full bg-yellow-400"></div>
+        ) : (
+          <div className="size-2 rounded-full bg-red-500"></div>
+        )}
         {hasImage ? (
           <Image
             src={job.image as string}
             alt={job.company}
             width={64}
             height={64}
-            className="rounded-full border border-gray-200"
+            className="rounded-full ml-4 border border-gray-200"
           />
         ) : (
           <div className="h-16 w-16 bg-indigo-500 rounded-full border border-gray-200"></div>
         )}
         <div className="ml-4">
-          <h2 className="font-medium text-sm text-gray-700">{job.company}</h2>
+          <h2 className="flex items-center space-x-1 font-medium text-sm text-gray-700">
+            <span>{job.company}</span>
+          </h2>
           <h3 className="font-semibold text-lg tracking-tight text-gray-950">
             {job.title}
           </h3>
