@@ -39,38 +39,57 @@ export default function JobDetailPage() {
       </header>
       <div className="relative grid grid-cols-[30rem_minmax(0,1fr)] items-start max-h-content">
         <div className="sticky top-8 border border-gray-200 border-r-0 px-8 pt-8 pb-10 rounded-l-xl">
-          <a
-            href={`/`}
-            className="inline-flex group items-center mb-6 text-gray-400 hover:bg-gray-100 hover:text-gray-500 py-1 pl-1 pr-2 rounded-lg -ml-1"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 16 16"
-              fill="currentColor"
-              className="size-4"
+          <div className="flex items-start justify-between">
+            <a
+              href={`/`}
+              className="inline-flex group items-center mb-6 text-gray-400 hover:bg-gray-100 hover:text-gray-500 py-1 pl-1 pr-2 rounded-lg -ml-1"
             >
-              <path
-                fillRule="evenodd"
-                d="M9.78 4.22a.75.75 0 0 1 0 1.06L7.06 8l2.72 2.72a.75.75 0 1 1-1.06 1.06L5.47 8.53a.75.75 0 0 1 0-1.06l3.25-3.25a.75.75 0 0 1 1.06 0Z"
-                clipRule="evenodd"
-              />
-            </svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 16 16"
+                fill="currentColor"
+                className="size-4"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M9.78 4.22a.75.75 0 0 1 0 1.06L7.06 8l2.72 2.72a.75.75 0 1 1-1.06 1.06L5.47 8.53a.75.75 0 0 1 0-1.06l3.25-3.25a.75.75 0 0 1 1.06 0Z"
+                  clipRule="evenodd"
+                />
+              </svg>
 
-            <span className="text-gray-500 group-hover:text-gray-600 text-sm inline-block">
-              Back
-            </span>
-          </a>
+              <span className="text-gray-500 group-hover:text-gray-600 text-sm inline-block">
+                Back
+              </span>
+            </a>
+            <div className="">
+              {job.rating < 2 ? (
+                <div className="text-emerald-800 text-xs uppercase tracking-wide font-semibold py-1 px-2 rounded-full bg-emerald-100">
+                  Trustworthy
+                </div>
+              ) : job.rating < 4 ? (
+                <div className="text-yellow-800 text-xs uppercase tracking-wide font-semibold py-1 px-2 rounded-full bg-yellow-100">
+                  Somewhat misleading
+                </div>
+              ) : (
+                <div className="text-red-800 text-xs uppercase tracking-wide font-semibold py-1 px-2 rounded-full bg-red-100">
+                  Very misleading
+                </div>
+              )}
+            </div>
+          </div>
           <div className="flex items-center space-x-2 mb-6">
             <Image
               src={job.image as string}
               alt={job.company}
-              width={36}
-              height={36}
+              width={48}
+              height={48}
               className="rounded-full border border-gray-200"
             />
-            <p className="font-semibold text-indigo-500 text-lg">
-              {job.company}
-            </p>
+            <div>
+              <p className="font-semibold text-gray-500 text-lg truncate">
+                {job.company}
+              </p>
+            </div>
           </div>
           <h1 className="text-5xl font-semibold mb-2 tracking-tighter">
             {job.title}
