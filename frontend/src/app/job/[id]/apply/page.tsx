@@ -108,9 +108,7 @@ Resume: ${resumeText}`);
               height={36}
               className="rounded-full border border-gray-200"
             />
-            <p className="font-semibold text-indigo-500 text-lg">
-              {job.company}
-            </p>
+            <p className="font-semibold text-gray-500 text-lg">{job.company}</p>
           </div>
           <h1 className="text-5xl font-semibold mb-2 tracking-tighter">
             {job.title}
