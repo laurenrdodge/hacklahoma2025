@@ -1,5 +1,7 @@
 "use client";
 
+export const runtime = "edge";
+
 import { useState } from "react";
 import JobBoard from "@/components/JobBoard";
 import JobPostModal from "@/components/JobPostModal";
