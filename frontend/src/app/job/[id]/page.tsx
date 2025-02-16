@@ -1,12 +1,15 @@
 "use client";
 
 import { useParams } from "next/navigation";
+import { useState } from "react";
 import ReactMarkdown from "react-markdown";
 import jobs from "@/data/jobs.json";
 import Link from "next/link";
 import Image from "next/image";
+import JobPostModal from "@/components/JobPostModal";
 
 export default function JobDetailPage() {
+  const [isJobModalOpen, setIsJobModalOpen] = useState<boolean>(false);
   const { id } = useParams() as { id: string };
   const job = jobs.find((job) => job.id === parseInt(id));
 
@@ -24,7 +27,10 @@ export default function JobDetailPage() {
               jobs
             </span>
           </span>
-          <button className="px-3 py-2 text-xs font-medium text-white rounded-lg bg-gray-800 hover:bg-gray-700">
+          <button
+            className="px-3 py-2 text-xs font-medium text-white rounded-lg bg-gray-800 hover:bg-gray-700"
+            onClick={() => setIsJobModalOpen(true)}
+          >
             Post a job
           </button>
         </div>
@@ -59,7 +65,7 @@ export default function JobDetailPage() {
               {job.company}
             </p>
           </div>
-          <h1 className="text-5xl font-bold mb-2 tracking-tighter">
+          <h1 className="text-5xl font-semibold mb-2 tracking-tighter">
             {job.title}
           </h1>
 
@@ -112,6 +118,10 @@ export default function JobDetailPage() {
           </div>
         </div>
       </div>
+      <JobPostModal
+        isOpen={isJobModalOpen}
+        onClose={() => setIsJobModalOpen(false)}
+      />
     </main>
   );
 }

@@ -3,13 +3,12 @@
 import { useState } from "react";
 import JobBoard from "@/components/JobBoard";
 import JobPostModal from "@/components/JobPostModal";
-import jobs from "@/data/jobs.json";
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   return (
-    <main className="max-w-4xl mx-auto px-4 font-sans">
+    <main className="max-w-4xl mx-auto px-4 font-sans pb-16">
       <header>
         <div className="flex justify-between items-center py-6">
           <span>
