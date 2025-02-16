@@ -3,7 +3,7 @@
 import { useState } from "react";
 import JobBoard from "@/components/JobBoard";
 import JobPostModal from "@/components/JobPostModal";
-import jobs from "@/data/jobs.json";
+// import jobs from "@/data/jobs.json";
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
