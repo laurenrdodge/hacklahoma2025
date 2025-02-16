@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/laurenrdodge/hacklahoma2025#readme",
   "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250214.0",
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",
     "@openzeppelin/contracts": "^5.2.0",
     "dotenv": "^16.4.7",
