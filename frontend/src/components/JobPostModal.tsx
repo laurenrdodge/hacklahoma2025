@@ -66,6 +66,17 @@ export default function JobPostModal({ isOpen, onClose }: JobPostModalProps) {
           />
 
           <label className="block text-sm font-medium text-gray-700">
+            Description
+          </label>
+          <input
+            type="text"
+            className="w-full p-2 border rounded-md mb-3"
+            placeholder="Markdown description, single-line"
+            value={salaryRange}
+            onChange={(e) => setSalaryRange(e.target.value)}
+          />
+
+          <label className="block text-sm font-medium text-gray-700">
             Job Type
           </label>
           <select
@@ -78,19 +89,22 @@ export default function JobPostModal({ isOpen, onClose }: JobPostModalProps) {
             <option value="Contract">Contract</option>
           </select>
 
-          {/* Close Button */}
+          {/* Buttons */}
+          <button className="w-full p-2 mt-8 bg-gray-800 hover:bg-gray-700 text-white rounded-md font-medium cursor-pointer">
+            Post Job
+          </button>
           <button
             onClick={onClose}
-            className="w-full mt-4 p-2 bg-gray-300 hover:bg-gray-400 rounded-md"
+            className="w-full mt-4 p-2 border border-gray-200 hover:bg-gray-200 rounded-md font-medium text-gray-800 cursor-pointer"
           >
-            Close
+            Cancel
           </button>
         </div>
 
         {/* Right: Live Preview */}
         <div className="w-3/5 bg-gray-50 p-6 flex flex-col justify-center">
           {/* <h3 className="text-gray-500 mb-2">Preview</h3> */}
-          <div className="border p-4 rounded-lg shadow-lg bg-white">
+          <div className="border p-4 rounded-lg bg-white">
             <div className="relative flex justify-between items-center rounded-xl">
               <div className="flex items-center">
                 <div className="h-16 w-16 bg-indigo-500 rounded-full"></div>
