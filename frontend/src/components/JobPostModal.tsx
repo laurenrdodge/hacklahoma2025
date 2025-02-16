@@ -14,7 +14,7 @@ export default function JobPostModal({ isOpen, onClose }: JobPostModalProps) {
   const [salaryRange, setSalaryRange] = useState("");
   const [jobType, setJobType] = useState("Full-time");
 
-  if (!isOpen) return null; // Do not render the modal if it's not open
+  if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 bg-black/80 flex justify-center items-center z-50">

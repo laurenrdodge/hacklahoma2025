@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { FC } from "react";
+import Image from "next/image";
 
 type Job = {
   id: number;
@@ -9,6 +10,7 @@ type Job = {
   type: string;
   salaryRange: string;
   description: string;
+  image?: string;
 };
 
 interface JobCardProps {
@@ -16,13 +18,25 @@ interface JobCardProps {
 }
 
 const JobCard: FC<JobCardProps> = ({ job }) => {
+  const hasImage = job.image && job.image.trim() !== "";
+
   return (
     <Link
       href={`/job/${job.id}`}
-      className="relative flex justify-between items-center rounded-xl"
+      className="relative flex justify-between items-center rounded-xl cursor-pointer"
     >
       <div className="flex items-center">
-        <div className="h-16 w-16 bg-indigo-500 rounded-full"></div>
+        {hasImage ? (
+          <Image
+            src={job.image as string}
+            alt={job.company}
+            width={64}
+            height={64}
+            className="rounded-full border border-gray-200"
+          />
+        ) : (
+          <div className="h-16 w-16 bg-indigo-500 rounded-full border border-gray-200"></div>
+        )}
         <div className="ml-4">
           <h2 className="font-medium text-sm text-gray-700">{job.company}</h2>
           <h3 className="font-semibold text-lg tracking-tight text-gray-950">
