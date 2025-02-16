@@ -13,6 +13,7 @@ export default function JobPostModal({ isOpen, onClose }: JobPostModalProps) {
   const [location, setLocation] = useState("");
   const [salaryRange, setSalaryRange] = useState("");
   const [jobType, setJobType] = useState("Full-time");
+  const [description, setDescription] = useState("");
 
   if (!isOpen) return null;
 
@@ -72,8 +73,8 @@ export default function JobPostModal({ isOpen, onClose }: JobPostModalProps) {
             type="text"
             className="w-full p-2 border rounded-md mb-3"
             placeholder="Markdown description, single-line"
-            value={salaryRange}
-            onChange={(e) => setSalaryRange(e.target.value)}
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
           />
 
           <label className="block text-sm font-medium text-gray-700">
