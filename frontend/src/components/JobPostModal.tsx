@@ -12,7 +12,6 @@ import JobCard from "@/components/JobCard";
 import { ethers } from "ethers";
 import { Web3Provider } from "@ethersproject/providers";
 import { parseEther } from "@ethersproject/units";
-import { abi as jobBoardABI } from "@/src/artifacts/contracts/JobBoard.sol/JobBoard.json";
 
 interface JobPostModalProps {
   isOpen: boolean;
@@ -76,16 +75,220 @@ export default function JobPostModal({ isOpen, onClose }: JobPostModalProps) {
       }
       const provider = new Web3Provider(window.ethereum);
       const signer = provider.getSigner();
-  
+      const jobBoardABI = [
+        {
+          "inputs": [
+            {
+              "internalType": "contract IERC20",
+              "name": "_stakingToken",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "constructor"
+        },
+        {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "jobId",
+              "type": "uint256"
+            }
+          ],
+          "name": "InterviewConfirmed",
+          "type": "event"
+        },
+        {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "jobId",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "employer",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "bool",
+              "name": "flaggedAsMisleading",
+              "type": "bool"
+            }
+          ],
+          "name": "JobPosted",
+          "type": "event"
+        },
+        {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "jobId",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "reporter",
+              "type": "address"
+            }
+          ],
+          "name": "JobReportedFake",
+          "type": "event"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "_jobId",
+              "type": "uint256"
+            }
+          ],
+          "name": "confirmInterview",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "jobIdCounter",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "name": "jobListings",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "id",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address",
+              "name": "employer",
+              "type": "address"
+            },
+            {
+              "internalType": "string",
+              "name": "title",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "description",
+              "type": "string"
+            },
+            {
+              "internalType": "uint8",
+              "name": "aiRating",
+              "type": "uint8"
+            },
+            {
+              "internalType": "uint256",
+              "name": "stakeAmount",
+              "type": "uint256"
+            },
+            {
+              "internalType": "enum JobBoard.JobStatus",
+              "name": "status",
+              "type": "uint8"
+            },
+            {
+              "internalType": "bool",
+              "name": "flaggedAsMisleading",
+              "type": "bool"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "string",
+              "name": "_title",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "_description",
+              "type": "string"
+            },
+            {
+              "internalType": "uint8",
+              "name": "_aiRating",
+              "type": "uint8"
+            },
+            {
+              "internalType": "uint256",
+              "name": "_stakeAmount",
+              "type": "uint256"
+            }
+          ],
+          "name": "postJob",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "_jobId",
+              "type": "uint256"
+            }
+          ],
+          "name": "reportFakeJob",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "stakingToken",
+          "outputs": [
+            {
+              "internalType": "contract IERC20",
+              "name": "",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        }
+      ]
+
       const jobBoardAddress = process.env.NEXT_PUBLIC_JOB_BOARD_ADDRESS;
       if (!jobBoardAddress) {
         throw new Error("Job board address is not defined");
       }
       const jobBoardContract = new ethers.Contract(jobBoardAddress, jobBoardABI, signer as unknown as ethers.ContractRunner);
-  
+
       // Convert stake amount to wei
       const parsedStakeAmount = parseEther(stakeAmount);
-  
+
       // Post the job
       const tx = await jobBoardContract.postJob(
         jobTitle,
@@ -93,9 +296,9 @@ export default function JobPostModal({ isOpen, onClose }: JobPostModalProps) {
         aiAnalysis.rating, // AI rating from analysis
         parsedStakeAmount
       );
-  
+
       await tx.wait();
-  
+
       alert("Job posted successfully!");
       onClose();
     } catch (error) {
@@ -226,9 +429,8 @@ export default function JobPostModal({ isOpen, onClose }: JobPostModalProps) {
                 AI Analysis
               </h3>
               <div
-                className={`p-3 rounded-md ${
-                  aiAnalysis.rating >= 3 ? "bg-red-50" : "bg-green-50"
-                }`}
+                className={`p-3 rounded-md ${aiAnalysis.rating >= 3 ? "bg-red-50" : "bg-green-50"
+                  }`}
               >
                 <p className="text-sm">
                   Rating: {aiAnalysis.rating} / 5<br />
@@ -262,11 +464,10 @@ export default function JobPostModal({ isOpen, onClose }: JobPostModalProps) {
             {sortedJobs.map((job, index) => (
               <li
                 key={job.id}
-                className={`py-4 ${
-                  index === 1
+                className={`py-4 ${index === 1
                     ? "bg-white border border-gray-200 shadow-lg p-4 rounded-xl"
                     : "opacity-50 px-4"
-                }`}
+                  }`}
               >
                 <JobCard job={job} />
               </li>
