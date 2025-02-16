@@ -1,8 +1,11 @@
-@import 'tailwindcss';
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 @theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --font-sans: "Inter", sans-serif;
+  --font-sans--font-feature-settings: "cv11";
 }
 
 /*
@@ -23,17 +26,21 @@
   }
 }
 
-:root {
+/* :root {
   --background: #ffffff;
   --foreground: #171717;
-}
+} */
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
-}
+} */
+
+/* html {
+  font-feature-settings: "ss01", "cv11";
+} */
 
 body {
   color: var(--foreground);

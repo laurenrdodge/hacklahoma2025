@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "title": "Frontend Developer",
+    "company": "Google",
+    "location": "Mountain View, CA",
+    "type": "Full Time",
+    "salaryRange": "$80,000 - $127,000",
+    "description": "We are looking for a frontend developer to join our team."
+  },
+  {
+    "id": 2,
+    "title": "Full Stack Engineer",
+    "company": "Apple ",
+    "location": "Cupertino, CA",
+    "type": "Full Time",
+    "salaryRange": "$197,500 - $249,000",
+    "description": "We are looking for a frontend developer to join our team."
+  },
+  {
+    "id": 3,
+    "title": "Data Scientist",
+    "company": "Microsoft ",
+    "location": "Redmond, WA",
+    "type": "Full Time",
+    "salaryRange": "$100,000 - $140,000",
+    "description": "Microsoft is looking for an innovative and highly motivated **Data Scientist** to join our AI & Cloud Data Team. You will work alongside engineers, researchers, and business leaders to build cutting-edge machine learning models, analyze vast datasets, and drive impactful decisions across Microsoft’s global ecosystem.\n\nThis role offers the opportunity to work on AI-driven products at scale, leveraging cloud computing, big data, and advanced statistical techniques to create intelligent solutions for millions of users worldwide.\n\n---\n\n## Responsibilities\n\n### Data Analysis & Insights\n- Analyze large-scale structured and unstructured data from diverse sources such as Azure Cloud, Bing, Office 365, and Windows telemetry.\n- Develop **descriptive, predictive, and prescriptive analytics** to inform key business and product decisions.\n- Conduct **exploratory data analysis (EDA)** to discover trends, correlations, and patterns in high-dimensional datasets.\n\n### Machine Learning & AI Model Development\n- Design, build, and deploy **machine learning models** for applications such as NLP, recommendation systems, forecasting, and anomaly detection.\n- Optimize models using techniques like **hyperparameter tuning, ensemble learning, and feature engineering**.\n- Implement deep learning solutions with **PyTorch, TensorFlow, or Microsoft’s proprietary AI frameworks**.\n- Utilize **Azure Machine Learning** for scalable model deployment and monitoring.\n\n### Data Engineering & Cloud Integration\n- Work with large-scale **cloud data pipelines** using Azure Data Lake, Databricks, and CosmosDB.\n- Design and implement **ETL workflows** to process and clean large datasets efficiently.\n- Optimize data storage and retrieval strategies to improve model performance.\n\n### Business Impact & Decision-Making\n- Translate data-driven insights into actionable business recommendations.\n- Collaborate with product managers, engineers, and executives to integrate AI solutions into Microsoft products.\n- Present findings and model outcomes to both technical and non-technical stakeholders.\n\n---\n\n## Required Qualifications\n- Bachelor's or Master’s degree in Computer Science, Data Science, Statistics, Mathematics, or a related field.\n- 3+ years of experience in data science, machine learning, or a related field.\n- Strong programming skills in **Python, R, or SQL**.\n- Experience with **machine learning frameworks** such as Scikit-learn, PyTorch, or TensorFlow.\n- Proficiency in **data visualization tools** like Matplotlib, Seaborn, or Power BI.\n- Familiarity with **big data technologies** such as Spark, Databricks, and Hadoop.\n- Strong problem-solving skills and the ability to work with complex datasets.\n\n---\n\n## Preferred Qualifications\n- Ph.D. in Data Science, Machine Learning, or a related field.\n- Experience deploying models in a **cloud environment** (Azure, AWS, or GCP).\n- Knowledge of **natural language processing (NLP), reinforcement learning, or generative AI**.\n- Experience working with **Microsoft Azure’s AI and data platforms**.\n- Understanding of **A/B testing and causal inference methods**.\n\n---\n\n## Why Join Microsoft?\n- Work on cutting-edge AI and data science projects with global impact.\n- Collaborate with world-class engineers and researchers.\n- Access Microsoft’s vast cloud computing resources and AI frameworks.\n- Competitive salary, stock options, and industry-leading benefits.\n- Opportunities for career growth and continuous learning.\n\n---\n\n## How to Apply\nInterested candidates should submit their resume and a brief cover letter outlining their experience and interest in the role. Applications can be submitted through Microsoft’s career portal or via email to [recruiting@microsoft.com](mailto:recruiting@microsoft.com)."
+  },
+  {
+    "id": 4,
+    "title": "Society Destroyer",
+    "company": "Meta ",
+    "location": "San Jose, CA",
+    "type": "Full Time",
+    "salaryRange": "$100,000 - $140,000",
+    "description": "We are looking for a frontend developer to join our team."
+  }
+]
